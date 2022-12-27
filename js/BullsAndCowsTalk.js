@@ -9,113 +9,56 @@ const imgMyG = document.querySelector("#MyG");
 const button01 = document.querySelector("button#ans01");
 const button02 = document.querySelector("button#ans02");
 var txt01 = '嗨~你準備好來玩猜數字小遊戲了嗎?';
-var txt02 = '嗨~';
+var txt02 = '計時開始！請作答~';
 
-// 将 txt 数组作为参数传递给 typeWriter 函数
+//将 txt 数组作为参数传递给 typeWriter 函数
 function typeWriter(txt, clear) {
-  // 先清空原有的文本內容
-  if (clear) {
     // 先清空原有的文本內容
-    document.getElementById("dialogueText").innerHTML = "";
-  }
-
-  var thistxt = txt;
-  var i = 0;
-  var speed = 100;
-  console.log(thistxt);
-
-  // 使用 setInterval 來循環輸出文字
-  var interval = setInterval(function () {
-    if (i < thistxt.length) {
-      document.getElementById("dialogueText").innerHTML += thistxt.charAt(i);
-      i++;
-    } else {
-      // 停止 setInterval
-      clearInterval(interval);
-      //這邊的else就是指，當我所有文字載入完，我的i > txt.length，就可以開始執行以下程式
-      //用setTimeout是因為我希望這邊延遲出現
-      setTimeout(() => {
-        document.querySelector(".ans").style.display = "block";
-
-        button01.innerHTML = "我準備好了！";
-        button02.innerHTML = "";
-      }, 800);
+    if (clear) {
+        // 先清空原有的文本內容
+        document.getElementById("dialogueText").innerHTML = "";
     }
-  }, speed);
+
+    var thistxt = txt;
+    var i = 0;
+    var speed = 100;
+
+    // 使用 setInterval 來循環輸出文字
+    var interval = setInterval(function () {
+        if (i < thistxt.length) {
+            document.getElementById("dialogueText").innerHTML += thistxt.charAt(i);
+            i++;
+        } else {
+            // 停止 setInterval
+            clearInterval(interval);
+            //這邊的else就是指，當我所有文字載入完，我的i > txt.length，就可以開始執行以下程式
+            //用setTimeout是因為我希望這邊延遲出現
+            setTimeout(() => {
+                document.querySelector(".ans").style.display = "block";
+
+                button01.innerHTML = "我準備好了！";
+                button02.innerHTML = "";
+            }, 800);
+        }
+    }, speed);
 }
 
-var firstClick = true;
-$(document).ready(function talk() {
-  if (!firstClick) return; // 如果不是第一次按擊，則退出函數
-  firstClick = false;
+function talk(thistxt) {
+    setTimeout(() => {
+        document.querySelector(".dialogue").style.display = "block";
+        typeWriter(thistxt);
+    }, 500);
+}
 
-  setTimeout(() => {
-    document.querySelector(".dialogue").style.display = "block";
-    typeWriter(txt01);
-  }, 500);
-});
+talk(txt01);
 
 // 為按鈕添加事件處理器
 //我可以判定如果對話是哪個「編號」就執行哪個動作或連接到哪裡
 button01.addEventListener("click", function () {
-    typeWriter(txt02, true);
-  });
+});
+
+
 button02.addEventListener("click", function () {
     typeWriter(txt02, true);
-  });
-
-
-
-// const imgMyG = document.querySelector("#MyG");
-// const button01 = document.querySelector("button#ans01");
-// const button02 = document.querySelector("button#ans02");
-// var txt01 = '嗨~你準備好來玩猜數字小遊戲了嗎?';
-// var txt02 = '嗨~';
-
-// // 将 txt 数组作为参数传递给 typeWriter 函数
-// function typeWriter(txt) {
-//     var thistxt = txt;
-//     var i = 0;
-//     var speed = 100;
-//     console.log(thistxt);
-
-//     var interval = setInterval(function () {
-//         if (i < thistxt.length) {
-//             document.getElementById("dialogueText").innerHTML += thistxt.charAt(i);
-//             i++;
-//         } else {
-//             clearInterval(interval);
-//             //這邊的else就是指，當我所有文字載入完，我的i > txt.length，就可以開始執行以下程式
-//             //用setTimeout是因為我希望這邊延遲出現
-//             setTimeout(() => {
-//                 document.querySelector(".ans").style.display = "block";
-
-//                 button01.innerHTML = "我準備好了！";
-//                 button02.innerHTML = "";
-
-//             }, 800);
-//         }
-//     }, speed);
-// }
-
-// var firstClick = true;
-// $(document).ready(function () {
-//     if (!firstClick) return; // 如果不是第一次按擊，則退出函數
-//     firstClick = false;
-
-
-//     setTimeout(() => {
-//         document.querySelector(".dialogue").style.display = "block";
-//         typeWriter(txt01);
-//     }, 500);
-// });
-
-// // 為按鈕添加事件處理器
-// //我可以判定如果對話是哪個「編號」就執行哪個動作或連接到哪裡
-// button01.addEventListener("click", function () {
-//     typeWriter(txt02);
-// });
-// button02.addEventListener("click", function () {
-//     typeWriter(txt02);
-// });
+});
 

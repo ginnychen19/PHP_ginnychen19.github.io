@@ -92,6 +92,12 @@
 
 #show_check {
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    
+    height: 300px;
+    overflow: auto;
+
     margin: 0 13px;
     padding: 20px 5px;
     border-top: 3px solid var(--myWhite);

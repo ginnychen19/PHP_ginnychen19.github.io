@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (isset($_COOKIE["uid"])) {
+    $_SESSION["uid"] = $_COOKIE["uid"]; 
+    setcookie("uid", $_COOKIE["uid"], time() + 120);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,12 +23,14 @@
 </head>
 
 <body>
-      <!--帳號登入-->
-      <div id="login" style="display: none;">
-        <div id = "close"><h6>x</h6></div>
+    <!--帳號登入-->
+    <div id="login" style="display: none;">
+        <div id="close">
+            <h6>x</h6>
+        </div>
         <div>
             <h4>登入</h4>
-            <form action="BullsAndCows.php" method="post" enctype="multipart/form-data">
+            <form action="./php/login.php" method="post" enctype="multipart/form-data">
                 <label for="user_uid">請輸入帳號：</label>
                 <input type="text" id="user_uid" name="user_uid" required>
                 <br>
@@ -32,10 +41,13 @@
             </form>
         </div>
     </div>
+    
 
     <!--帳號註冊-->
     <div id="register" style="display: none;">
-        <div id = "close"><h6>x</h6></div>
+        <div id="close">
+            <h6>x</h6>
+        </div>
         <div>
             <h4>註冊</h4>
             <form action="BullsAndCows.php" method="post" enctype="multipart/form-data">
@@ -52,12 +64,14 @@
             </form>
         </div>
     </div>
-  
+
     <!--遊戲區-->
-    <div class="Title"><h1>大麻教繪-猜數字小遊戲</h1></div>
+    <div class="Title">
+        <h1>大麻教繪-猜數字小遊戲</h1>
+    </div>
     <div id="BACgame">
         <div class="MyGirl" style="padding: 0px;">
-            <div class="bg">
+            <div class="bg" id="btn_start">
                 <div>
                     <div class="dialogue" style="display:none; top: 120px; margin: 20px;">
                         <h6 id="dialogueText"></h6>
@@ -94,11 +108,10 @@
                         <p id="passTime">目前用時</p>
                     </div>
                 </div>
-                <div id="show_check" style="flex: 8;">
-                    <li>fdeffef</li>
-                </div>
+                <ul id="show_check" style="flex: 8;">
+                </ul>
                 <div style="flex: 1;">
-                    <input type="text" id="myAns" name="myAns" required>
+                    <input type="text" id="input_answer" name="myAns" required>
                     <button id="btn_checkAns" class="btn">檢查答案</button>
                 </div>
             </div>
@@ -123,29 +136,31 @@
                     </thead>
                     <tbody>
                         <?php
-            require('./php/db.php'); 
-            $sql = "select * from vw_allscoreinfo;";
-            $result = $mysqli->query($sql);
-            $total_records = mysqli_num_rows($result);
-            
-            for ($i = 0; $i < $total_records; $i++){
-                // 取得產品資料
-                $row = mysqli_fetch_assoc($result);
-                // 顯示產品各欄位的資料
-             
-                echo "<tr>";
-                echo "<td>名次</td>";
-                echo "<td>" . $row["Uname"] . "</td>";
-                echo "<td>" . $row["Utime"] . "</td>";		
-                echo "</tr>";
-                }
-            ?>
+                    require('./php/db.php');
+                    $sql = "select * from vw_rankscoreinfo;";
+                    $result = $mysqli->query($sql);
+                    $total_records = mysqli_num_rows($result);
+
+                    for ($i = 0; $i < $total_records; $i++) {
+                        // 取得產品資料
+                        $row = mysqli_fetch_assoc($result);
+                        // 顯示產品各欄位的資料
+                    
+                        echo "<tr>";
+                        echo "<td>" . $row["ranking"] . "</td>";
+                        echo "<td>" . $row["Uname"] . "</td>";
+                        echo "<td>" . $row["Utime"] . "</td>";
+                        echo "</tr>";
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
+
+    <script src="./js/BullsAndCowsgame.js"></script>
     <script src="./js/BullsAndCowsTalk.js"></script>
     <script src="./js/BullsAndCows.js"></script>
 </body>
