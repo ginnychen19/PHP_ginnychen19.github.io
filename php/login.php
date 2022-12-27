@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <?php require('./db.php'); ?>
     <?php
     /* 取得使用者輸入的帳號與密碼，   
@@ -20,13 +22,12 @@
 
         /* 如果有驗證成功，維持登陸成功兩分鐘*/
         if ($result->num_rows == 1) {
-            /* $_SESSION['uid'] = $uid; */
+            $_SESSION['uid'] = $uid; 
             setcookie("uid", $uid, time() + 120);
             $user = $_COOKIE["uid"];
             echo ("<p>你好$user</p>");
 
         } else {
-            /*  header('location:error.php'); */
             // 判斷是否是帳號或密碼錯誤
             $sql = "select * from userinfo where uid = ?";
             $stmt = $mysqli->prepare($sql);

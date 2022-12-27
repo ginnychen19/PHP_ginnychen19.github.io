@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_COOKIE["uid"])) {
-    $_SESSION["uid"] = $_COOKIE["uid"]; 
+    $_SESSION["uid"] = $_COOKIE["uid"];
     setcookie("uid", $_COOKIE["uid"], time() + 120);
 }
 ?>
@@ -41,7 +41,7 @@ if (isset($_COOKIE["uid"])) {
             </form>
         </div>
     </div>
-    
+
 
     <!--帳號註冊-->
     <div id="register" style="display: none;">
@@ -74,6 +74,11 @@ if (isset($_COOKIE["uid"])) {
             <div class="bg" id="btn_start">
                 <div>
                     <div class="dialogue" style="display:none; top: 120px; margin: 20px;">
+                        <?php
+                        if (isset($_COOKIE["uid"])) {
+                            echo ("<p>你好" . $_COOKIE["uid"] . "~</p>");
+                        }
+                        ?>
                         <h6 id="dialogueText"></h6>
                         <div class="ans" style="display:none">
                             <a id="ans01" href=" ">
@@ -136,23 +141,23 @@ if (isset($_COOKIE["uid"])) {
                     </thead>
                     <tbody>
                         <?php
-                    require('./php/db.php');
-                    $sql = "select * from vw_rankscoreinfo;";
-                    $result = $mysqli->query($sql);
-                    $total_records = mysqli_num_rows($result);
+                        require('./php/db.php');
+                        $sql = "select * from vw_rankscoreinfo;";
+                        $result = $mysqli->query($sql);
+                        $total_records = mysqli_num_rows($result);
 
-                    for ($i = 0; $i < $total_records; $i++) {
-                        // 取得產品資料
-                        $row = mysqli_fetch_assoc($result);
-                        // 顯示產品各欄位的資料
-                    
-                        echo "<tr>";
-                        echo "<td>" . $row["ranking"] . "</td>";
-                        echo "<td>" . $row["Uname"] . "</td>";
-                        echo "<td>" . $row["Utime"] . "</td>";
-                        echo "</tr>";
-                    }
-                    ?>
+                        for ($i = 0; $i < $total_records; $i++) {
+                            // 取得產品資料
+                            $row = mysqli_fetch_assoc($result);
+                            // 顯示產品各欄位的資料
+                        
+                            echo "<tr>";
+                            echo "<td>" . $row["ranking"] . "</td>";
+                            echo "<td>" . $row["Uname"] . "</td>";
+                            echo "<td>" . $row["Utime"] . "</td>";
+                            echo "</tr>";
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>

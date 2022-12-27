@@ -8,7 +8,7 @@
 const imgMyG = document.querySelector("#MyG");
 const button01 = document.querySelector("button#ans01");
 const button02 = document.querySelector("button#ans02");
-var txt01 = '嗨~你準備好來玩猜數字小遊戲了嗎?';
+var txt01 = '你準備好來玩猜數字小遊戲了嗎?';
 var txt02 = '計時開始！請作答~';
 
 //将 txt 数组作为参数传递给 typeWriter 函数

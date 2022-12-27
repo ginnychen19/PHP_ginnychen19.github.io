@@ -21,3 +21,8 @@ registerclose.addEventListener("click", function () {
     registerPage.style.display = "none";
 });
 
+if (document.cookie.indexOf("uid") == -1) {
+    console.log("Cookie does not exist.");
+} else {
+    console.log("Cookie exists!");
+}
