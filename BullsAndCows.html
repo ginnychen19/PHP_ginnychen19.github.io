@@ -16,8 +16,26 @@
 </head>
 
 <body>
+      <!--帳號登入-->
+      <div id="login" style="display: none;">
+        <div id = "close"><h6>x</h6></div>
+        <div>
+            <h4>登入</h4>
+            <form action="BullsAndCows.php" method="post" enctype="multipart/form-data">
+                <label for="user_uid">請輸入帳號：</label>
+                <input type="text" id="user_uid" name="user_uid" required>
+                <br>
+                <label for="user_pwd">請輸入密碼：</label>
+                <input type="password" id="user_pwd" name="user_pwd" required>
+                <br><br><br>
+                <input type="submit" value="送出">
+            </form>
+        </div>
+    </div>
+
     <!--帳號註冊-->
     <div id="register" style="display: none;">
+        <div id = "close"><h6>x</h6></div>
         <div>
             <h4>註冊</h4>
             <form action="BullsAndCows.php" method="post" enctype="multipart/form-data">
@@ -34,29 +52,14 @@
             </form>
         </div>
     </div>
-    <!--帳號登入-->
-    <div id="login" style="display: none;">
-        <div>
-            <h4>登入</h4>
-            <form action="BullsAndCows.php" method="post" enctype="multipart/form-data">
-                <label for="user_uid">請輸入帳號：</label>
-                <input type="text" id="user_uid" name="user_uid" required>
-                <br>
-                <label for="user_pwd">請輸入密碼：</label>
-                <input type="password" id="user_pwd" name="user_pwd" required>
-                <br><br><br>
-                <input type="submit" value="送出">
-            </form>
-        </div>
-    </div>
-
+  
     <!--遊戲區-->
     <div class="Title"><h1>大麻教繪-猜數字小遊戲</h1></div>
     <div id="BACgame">
         <div class="MyGirl" style="padding: 0px;">
             <div class="bg">
                 <div>
-                    <div class="dialogue" style="display:none">
+                    <div class="dialogue" style="display:none; top: 120px; margin: 20px;">
                         <h6 id="dialogueText"></h6>
                         <div class="ans" style="display:none">
                             <a id="ans01" href=" ">
@@ -67,7 +70,7 @@
                             </a>
                         </div>
                     </div>
-                    <img id="MyG" src="./img/svg/MyG_TalkLC_ANI .svg">
+                    <img id="MyG" src="./img/svg/MyG_TalkLU_ANI02.svg">
                 </div>
             </div>
         </div>
@@ -143,7 +146,8 @@
         </div>
     </div>
 
-    <script src="./js/talk.js"></script>
+    <script src="./js/BullsAndCowsTalk.js"></script>
+    <script src="./js/BullsAndCows.js"></script>
 </body>
 
 </html>
