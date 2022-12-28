@@ -65,7 +65,10 @@ p {
     font-family: "GenJyuuGothic-L";
     font-size: var(--pContent);
 }
-
+.btn:disabled,#btn_checkAns.btn:disabled{
+    color: aliceblue;
+    background-color: rgb(110, 110, 110);
+}
 
 
 

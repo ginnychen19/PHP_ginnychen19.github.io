@@ -72,11 +72,14 @@ var ul_show_check = document.querySelector("#show_check");
 var cmdAnswer = document.getElementById("btn_lookAns"); //看答案
 cmdAnswer.onclick = function () {
     document.getElementById("btn_lookAns").disabled = true;
+    // document.getElementById("input_answer").disabled = true;
+    // document.getElementById("btn_checkAns").disabled = true;
     var theAns = document.createElement("p");
     theAns.innerText = "答案是：" + Answer;
     ul_show_check.appendChild(theAns);
 
     console.log("答案是：" + Answer);
+    
 }
 
 var cmdCheckanswer = document.getElementById("btn_checkAns"); //檢查答案
