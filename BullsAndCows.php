@@ -5,6 +5,11 @@ if (isset($_COOKIE["uid"])) {
     setcookie("uid", $_COOKIE["uid"], time() + 120);
 }
 ?>
+<?php
+if (isset($_COOKIE["uid"])) {
+    echo ("<p>你好" . $_COOKIE["uid"] . "~</p>");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,7 +55,7 @@ if (isset($_COOKIE["uid"])) {
         </div>
         <div>
             <h4>註冊</h4>
-            <form action="BullsAndCows.php" method="post" enctype="multipart/form-data">
+            <form action="./php/register.php" method="post" enctype="multipart/form-data">
                 <label for="user_uid">請輸入帳號：</label>
                 <input type="text" id="user_uid" name="user_uid" required>
                 <br>
@@ -97,7 +102,7 @@ if (isset($_COOKIE["uid"])) {
             <div class="gameBar" style="flex: 1;">
                 <div>
                     <button id="btn_login" class="btn">登入</button>
-                    <button id="btn_out" class="btn" style="display: none;">登出</button>
+                    <button id="btn_out" class="btn">登出</button>
                     <button id="btn_register" class="btn">註冊</button>
                 </div>
                 <div>

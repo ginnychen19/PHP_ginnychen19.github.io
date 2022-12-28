@@ -50,7 +50,7 @@ if (isset($_COOKIE["uid"])) {
     $stmt->execute();
 } else {
     /*存入1號訪客 */
-    $user_id = "1";
+    $user_id = "8";
 
     $sql = 'INSERT INTO `score` (`id`, `Utime`, `Ucount`) VALUES (?,?,?);';
     $stmt = $mysqli->prepare($sql);

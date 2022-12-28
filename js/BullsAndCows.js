@@ -21,8 +21,17 @@ registerclose.addEventListener("click", function () {
     registerPage.style.display = "none";
 });
 
-if (document.cookie.indexOf("uid") == -1) {
+var btn_login = $('#btn_login')[0]
+var btn_out = $('#btn_out')[0]
+
+if (document.cookie.indexOf("uid=") == -1) {
     console.log("Cookie does not exist.");
+    
+    btn_login.style.display = "block";
+    btn_out.style.display ="none";
+
 } else {
     console.log("Cookie exists!");
+    btn_login.style.display = "none";
+    btn_out.style.display ="block";
 }
