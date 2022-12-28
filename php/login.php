@@ -18,15 +18,12 @@
         $stmt->bind_param('ss', $uid, $pwd);
         $stmt->execute();
         $result = $stmt->get_result();
-
-
         /* 如果有驗證成功，維持登陸成功兩分鐘*/
         if ($result->num_rows == 1) {
             $_SESSION['uid'] = $uid; 
             setcookie("uid", $uid, time() + 120);
             $user = $_COOKIE["uid"];
             echo ("<p>你好$user</p>");
-
         } else {
             // 判斷是否是帳號或密碼錯誤
             $sql = "select * from userinfo where uid = ?";
